@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Auto-évaluation - Inspection Générale d'État</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="splashPage" class="page">
+    <img src="logo.png.png" class="logoCenter">
+    <h2>منصة التقييم الذاتي لأعضاء المفتشية العامة للدولة</h2>
+    <h3>Plateforme d'auto-évaluation bimestrielle</h3>
+</div>
+
+<!-- LOGIN -->
+<div id="loginPage" class="page" style="display:none;">
+    <img src="logo.png.png" class="logoCenter">
+    <h2>Connexion</h2>
+    <select id="username" class="inputField">
+        <option value="">Choisir votre nom</option>
+        <option>ABEIDAK</option>
+        <option>HAIBA</option>
+        <option>YACOUB</option>
+        <option>ADMINIGE</option>
+    </select>
+    <input type="password" id="password" class="inputField" placeholder="Mot de passe">
+    <div id="confirmDiv" style="display:none">
+        <input type="password" id="confirmPassword" class="inputField" placeholder="Confirmer mot de passe">
+    </div>
+    <button onclick="login()">Connexion</button>
+    <button id="resetAdmin" onclick="resetAdminPass()" style="display:none">Réinitialiser mot de passe</button>
+</div>
+
+<!-- PAGE UTILISATEUR -->
+<div id="userPage" class="page" style="display:none;">
+    <h2>Informations générales de l'inspecteur</h2>
+
+    <div id="userForm">
+        <div class="userField">
+            <label>Nom complet :</label>
+            <select id="userNameSelect" class="inputField">
+                <option value="">Choisir le nom</option>
+                <option>ABEIDAK</option>
+                <option>HAIBA</option>
+                <option>YACOUB</option>
+            </select>
+        </div>
+
+        <div class="userField">
+            <label>Grade de l'inspecteur :</label>
+            <select id="userGradeSelect" class="inputField">
+                <option value="">Choisir le grade</option>
+                <option>IE</option>
+                <option>IEA</option>
+                <option>IV</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="bottomButtons">
+        <button id="btnBackUser" class="yellow" onclick="backToDashboard()">Retour</button>
+        <button id="btnToEvaluation" class="green" onclick="goToEvaluation()">Passer à l'auto-évaluation</button>
+        <button class="red" onclick="logout()">Déconnexion</button>
+    </div>
+</div>
+
+<!-- PAGE AUTOEVALUATION -->
+<div id="evaluationPage" class="page" style="display:none;">
+<h2>Auto-évaluation</h2>
+
+<label>Période :</label>
+<select id="evalPeriode" class="inputField">
+<option value="">Choisir une période</option>
+<option value="Janvier-Février">Janvier - Février</option>
+<option value="Mars-Avril">Mars - Avril</option>
+<option value="Mai-Juin">Mai - Juin</option>
+<option value="Juillet-Août">Juillet - Août</option>
+<option value="Septembre-Octobre">Septembre - Octobre</option>
+<option value="Novembre-Décembre">Novembre - Décembre</option>
+</select>
+
+<label>Date de soumission :</label>
+<input type="date" id="evalDate" class="inputField">
+
+<h4>Ajouter une activité</h4>
+
+<div id="newTaskForm" class="newTaskForm">
+<input type="text" id="taskActivite" placeholder="Activité" class="inputField">
+<input type="text" id="taskRole" placeholder="Rôle" class="inputField">
+<input type="text" id="taskPeriode" placeholder="Période" class="inputField">
+<input type="text" id="taskLivrables" placeholder="Livrables" class="inputField">
+<input type="text" id="taskResultats" placeholder="Résultats" class="inputField">
+<button onclick="addEvalTask()">Ajouter</button>
+</div>
+
+<!-- REGLES -->
+<div id="rulesSection">
+<h4>Respect des règles de fonctionnement</h4>
+
+<label class="customCheckbox">Respect des délais et des instructions
+<input type="checkbox" id="ruleDelais">
+<span class="checkmark"></span>
+</label>
+
+<label class="customCheckbox">Assiduité et ponctualité
+<input type="checkbox" id="ruleAssiduite">
+<span class="checkmark"></span>
+</label>
+
+<label class="customCheckbox">Respect des normes déontologiques
+<input type="checkbox" id="ruleDeontologie">
+<span class="checkmark"></span>
+</label>
+
+<label class="customCheckbox">Communication professionnelle
+<input type="checkbox" id="ruleCommunication">
+<span class="checkmark"></span>
+</label>
+
+<label class="customCheckbox">Collaboration avec les collègues
+<input type="checkbox" id="ruleCollaboration">
+<span class="checkmark"></span>
+</label>
+
+</div>
+
+<!-- NOUVELLE SECTION AJOUTEE -->
+<div id="initiativeSection" style="width:70%; margin-top:20px;">
+<h4>Initiatives personnelles ou propositions</h4>
+<textarea id="initiativeText" class="inputField" style="width:100%; height:80px;" placeholder="Écrire vos initiatives ou propositions..."></textarea>
+</div>
+
+<!-- TABLEAU ACTIVITES -->
+<div id="tasksTableContainer" style="display:none; width:90%; margin-top:20px;">
+<h3>Liste des activités</h3>
+<table class="adminContent">
+<thead>
+<tr>
+<th>Activité</th>
+<th>Rôle</th>
+<th>Période</th>
+<th>Livrables</th>
+<th>Résultats</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="evalTasksBody"></tbody>
+</table>
+</div>
+
+<div class="bottomButtons">
+<button onclick="backFromEvaluation()">Retour</button>
+<button onclick="submitEvaluation()" class="green">Soumettre</button>
+<button onclick="showSubmittedArchive()" class="yellow">Auto-évaluations transmises</button>
+<button onclick="logout()" class="red">Déconnexion</button>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
